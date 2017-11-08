@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+float root2telluthetruth (int x, double ok){
+  int count(10);
+  double answer, res;
+  res=x/ok;
+  ok=(ok+res)/2;
+
+  while(count>0){
+    res=x/ok;
+    ok=(ok+res)/2;
+
+    if(ok<=(ok*0.01)+ok){
+    answer=ok;
+  }
+
+    else
+    res=x/ok;
+    ok=(ok + res)/2;
+
+    count-=1;
+  }
+  return answer;
+}
+
+float real(int x){
+  float a;
+  a=sqrt(x);
+  return a;
+}
+
+
+
+int main(){
+int x;
+double ok;
+
+cout<<"Ingresa un número y detrminaré su raiz cuadrada por medio del método babilónico"<<endl;
+cin>>x;
+cout<<"Ingresa un número aproximado por el que se podría dividir el primero (esto es parte del método)"<<endl;
+cin>>ok;
+cout<<"La raiz cuadrada de "<<x<<" es "<< root2telluthetruth (x,ok)<<endl;
+
+cout<<"Sin embargo, al determinarlo por el método tradicional, la verdadera raíz cuadada de "<<x<<" es "<< real(x)<<endl;
+
+return 0;
+}
