@@ -1,0 +1,68 @@
+#include <string>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#include "BigIntegerLibrary.hh"
+
+
+bool is_palindrome(BigInteger n){
+string str1= bigIntegerToString(n);
+string str2=str1;
+reverse(str2.begin(), str2.end());
+return (str2==str1);
+}
+
+
+BigInteger apply196(BigInteger n){
+string str1= bigIntegerToString(n);
+string str2=str1;
+reverse(str1.begin(), str1.end());
+return n+ stringToBigInteger(str1);
+}
+
+
+int main() {
+int nl=0, pal=0, l=0;
+BigInteger n;
+int x, y;
+
+cout<<"Ingresa el valor del número menor"<<endl;
+cin>>x;
+cout<<"Ingresa el valor del número mayor"<< endl;
+cin>>y;
+
+for(int i=x; i<=y; i++){
+n=i;
+
+
+if(is_palindrome (n)==true){
+  pal=pal+1;
+  }
+
+else {
+  int contador=0;
+  bool lych= true;
+    while (contador<=30){
+      n= (apply196(n));
+      if((is_palindrome(n))==true){
+        nl=nl+1;
+        lych=false;
+        break;
+        }
+        else{
+          contador=contador+1;
+        }
+    }
+  if (lych){
+    l=l+1;
+  }
+}
+}
+
+
+cout<<"En ese rango de números hay..."<<endl;
+cout<<pal<<" palindromes"<<endl;
+cout<<l<<" lychrel numbers y"<<endl;
+cout<<nl<<" non-lychrel numbers"<<endl;
+return 0;
+}
