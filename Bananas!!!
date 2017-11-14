@@ -1,0 +1,37 @@
+#include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int find_bananas (string banana){
+  int bananaCount;
+  ifstream infile;
+  int x;
+  infile.open("bananas.txt");
+  bananaCount=0;
+  string line;
+
+  if (infile.is_open()){
+
+    while(getline(infile,line)){
+      transform(line.begin(), line.end(), line.begin(), ::tolower);
+      x=line.find(banana);
+
+      while(x!=-1){
+        bananaCount++;
+        x=line.find(banana,x+1);
+      }
+    }
+  }
+
+return bananaCount;
+
+infile.close( );
+}
+
+int main(){
+  string banana="banana";
+  cout<<"Se han encontrado "<<find_bananas(banana)<<" bananas"<<endl;
+  return 0;
+}
